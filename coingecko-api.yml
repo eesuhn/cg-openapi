@@ -12,7 +12,7 @@ paths:
   /key:
     get:
       tags:
-        - Simple
+        - Ping
       summary: Check API usage
       description: >-
         Check your API key usage
@@ -39,6 +39,21 @@ paths:
             application/json:
               schema:
                 $ref: '#/components/schemas/SupportedCurrencies'
+  /onchain/networks:
+    get:
+      tags:
+        - Networks
+      summary: Supported Networks List
+      description: >-
+        Query all the supported networks on GeckoTerminal
+      operationId: networks-list
+      responses:
+        '200':
+          description: List of supported networks
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/SupportedNetworks'
 components:
   securitySchemes:
     proKeyAuth:
@@ -77,3 +92,29 @@ components:
         - btc
         - eth
         - usd
+    SupportedNetworks:
+      type: object
+      properties:
+        data:
+          type: array
+          items:
+            type: object
+            properties:
+              id:
+                type: string
+              type:
+                type: string
+              attributes:
+                type: object
+                properties:
+                  name:
+                    type: string
+                  coingecko_asset_platform_id:
+                    type: string
+      example:
+        data:
+          - id: eth
+            type: network
+            attributes:
+              name: Ethereum
+              coingecko_asset_platform_id: ethereum
