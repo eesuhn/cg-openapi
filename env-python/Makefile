@@ -6,7 +6,7 @@ all: venv
 venv: $(VENV)/bin/activate
 
 $(VENV)/bin/activate: requirements.txt
-	python3 -m venv $(VENV) > /dev/null 2>&1
+	python3 -m venv $(VENV)
 	./$(VENV)/bin/pip install -r requirements.txt
 	./$(VENV)/bin/pip install ../test-coingecko-python
 
