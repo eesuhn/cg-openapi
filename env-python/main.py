@@ -8,15 +8,28 @@ from _constant import (
 
 
 def main():
-    configuration = test_coingecko_python.Configuration(
-        host = "https://api.coingecko.com/api/v3"
-    )
-    # configuration.api_key['proKeyAuth'] = CG_PRO_API_KEY
-    configuration.api_key['demoKeyAuth'] = CG_DEMO_API_KEY
-    with test_coingecko_python.ApiClient(configuration) as api_client:
-        # get_networks_list(api_client)
-        get_simple_supported_currencies(api_client)
+    # test_coingecko_python = set_demo()
+    test_coingecko_python = set_pro()
+    with test_coingecko_python as api_client:
+        # get_simple_supported_currencies(api_client)
+        get_networks_list(api_client)
         pass
+
+
+def set_pro():
+    configuration = test_coingecko_python.Configuration(
+        server_index=0,
+    )
+    configuration.api_key['proKeyAuth'] = CG_PRO_API_KEY
+    return test_coingecko_python.ApiClient(configuration)
+
+
+def set_demo():
+    configuration = test_coingecko_python.Configuration(
+        server_index=1,
+    )
+    configuration.api_key['demoKeyAuth'] = CG_DEMO_API_KEY
+    return test_coingecko_python.ApiClient(configuration)
 
 
 def get_networks_list(api_client):

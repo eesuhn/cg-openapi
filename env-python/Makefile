@@ -10,6 +10,9 @@ $(VENV)/bin/activate: requirements.txt
 	./$(VENV)/bin/pip install -r requirements.txt
 	./$(VENV)/bin/pip install ../test-coingecko-python
 
+update: venv
+	./$(VENV)/bin/pip install --upgrade ../test-coingecko-python
+
 run: venv
 	@./$(VENV)/bin/python3 $(MAIN) $(filter-out $@,$(MAKECMDGOALS))
 
@@ -23,4 +26,4 @@ clean:
 
 re: clean all
 
-.PHONY: all venv run clean re
+.PHONY: all venv update run clean re
