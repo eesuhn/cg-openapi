@@ -1,0 +1,2 @@
+test-coingecko-python/*
+!test-coingecko-python/.gitkeep

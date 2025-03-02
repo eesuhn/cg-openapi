@@ -9,6 +9,21 @@ security:
   - proKeyAuth: []
   - demoKeyAuth: []
 paths:
+  /key:
+    get:
+      tags:
+        - Simple
+      summary: Check API usage
+      description: >-
+        Check your API key usage
+      operationId: api-usage
+      responses:
+        '200':
+          description: API usage
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Key'
   /simple/supported_vs_currencies:
     get:
       tags:
@@ -35,6 +50,25 @@ components:
       in: header
       name: x-cg-demo-api-key
   schemas:
+    Key:
+      type: object
+      properties:
+        plan:
+          type: string
+        rate_limit_request_per_minute:
+          type: number
+        monthly_call_credit:
+          type: number
+        current_total_monthly_calls:
+          type: number
+        current_remaining_monthly_calls:
+          type: number
+      example:
+        plan: Other
+        rate_limit_request_per_minute: 1000
+        monthly_call_credit: 1000000
+        current_total_monthly_calls: 0
+        current_remaining_monthly_calls: 1000000
     SupportedCurrencies:
       type: array
       items:
