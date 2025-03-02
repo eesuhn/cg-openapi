@@ -24,6 +24,4 @@ clean:
 		./$(VENV)/bin/pyclean . > /dev/null 2>&1 || true; \
 	fi
 
-re: clean all
-
-.PHONY: all venv update run clean re
+.PHONY: all venv update run clean
