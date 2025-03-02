@@ -1,3 +1,6 @@
 {
-  "packageName": "coingecko-python"
+  "packageName": "test_coingecko_python",
+  "packageVersion": "1.0.0",
+  "projectName": "test-coingecko-python",
+  "generateSourceCodeOnly": false
 }
