@@ -1,0 +1,45 @@
+openapi: 3.0.0
+info:
+  version: 3.1.0
+  title: CoinGecko API
+servers:
+  - url: https://pro-api.coingecko.com/api/v3
+  - url: https://api.coingecko.com/api/v3
+security:
+  - proKeyAuth: []
+  - demoKeyAuth: []
+paths:
+  /simple/supported_vs_currencies:
+    get:
+      tags:
+        - Simple
+      summary: Supported Currencies List
+      description: >-
+        Query all the supported currencies in CoinGecko API
+      operationId: simple-supported-currencies
+      responses:
+        '200':
+          description: List of supported currencies
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/SupportedCurrencies'
+components:
+  securitySchemes:
+    proKeyAuth:
+      type: apiKey
+      in: header
+      name: x-cg-pro-api-key
+    demoKeyAuth:
+      type: apiKey
+      in: header
+      name: x-cg-demo-api-key
+  schemas:
+    SupportedCurrencies:
+      type: array
+      items:
+        type: string
+      example:
+        - btc
+        - eth
+        - usd
