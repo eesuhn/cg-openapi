@@ -27,6 +27,7 @@ def set_pro():
 def set_demo():
     configuration = test_coingecko_python.Configuration(
         server_index=1,
+        # host="https://api.coingecko.com/api/v3"  # OR this way
     )
     configuration.api_key['demoKeyAuth'] = CG_DEMO_API_KEY
     return test_coingecko_python.ApiClient(configuration)
